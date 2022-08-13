@@ -132,3 +132,21 @@ var directive = new Vue({
     }
 })
 
+/**
+ * Les filtres
+ */
+Vue.filter('capitalize', function (value,prefix,suffix) {
+    return prefix +'_'+ value.toUpperCase()+'_'+ suffix
+})
+
+Vue.filter('reverse', function (value) {
+    return value
+        .split('').reverse().join('')
+})
+
+var filtres = new Vue({
+    el: '#filtres',
+    data:{
+        message:"test des filtres"
+    }
+})
