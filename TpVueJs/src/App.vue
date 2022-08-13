@@ -1,16 +1,20 @@
 <template>
+
   <div id="app">
     <img src="./assets/logo.png">
     <h1>{{ msg }}</h1>
     <counter></counter>
+    <alert></alert>
   </div>
 </template>
 
 <script>
-  import Counter from "./Counter.vue";
+  import Counter from "./Counter";
+  import Alert from "./Alert";
 export default {
   components: {
-    Counter
+    Counter,
+    Alert
   },
   name: 'app',
   data () {
@@ -22,6 +26,7 @@ export default {
 </script>
 
 <style>
+@import url("https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css");
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -47,5 +52,9 @@ li {
 
 a {
   color: #42b983;
+}
+
+.main.container{
+  padding-top: 50px;
 }
 </style>
