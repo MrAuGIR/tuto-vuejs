@@ -59,3 +59,41 @@ var vm = new Vue({
         clearInterval(this.$interval)
     }
 })
+
+/**
+ * Utilisation de computed au lieu de method
+ * computed met en cache les valeurs et met a jour les valeurs uniquement quand il y a un changement
+ * utilisation de watcher pour detecter une variable modifié
+ * @type {Vue}
+ */
+var watcher = new Vue({
+    el: "#watcher",
+    data: {
+        success: false,
+        message: '',
+        firstName: 'jean',
+        lastName: 'DeLaTour'
+    },
+    computed: {
+        cls: function (){
+            console.log('cls called')
+            return this.success === true ? "success" : "error";
+        },
+        fullName: {
+            get: function () {
+                console.log();
+                return this.firstName + ' ' + this.lastName;
+            },
+            set: function (value){
+                let parts = value.split(' ')
+                this.firstName = parts[0];
+                this.lastName = parts[1];
+            }
+        }
+    },
+    watch: {
+        fullName: function (value) {
+            console.log(value)
+        }
+    }
+})
