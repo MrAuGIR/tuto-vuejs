@@ -1,3 +1,17 @@
+/**
+ * Creation d'une directive et de ses modifiers
+ */
+/** on peut crée un object directement passer une fonction en second parametre ) */
+Vue.directive("hello",function (el,binding){
+    console.log('update')
+    el.value = binding.value
+})
+
+let salut = function(el,binding){
+    el.value = binding.value
+    console.log('bind')
+}
+
 var app = new Vue({
     el: '#app',
     data: {
@@ -97,3 +111,24 @@ var watcher = new Vue({
         }
     }
 })
+
+/**
+ * Directive avec leur modifiers
+ * attributs special qui permet de faire des comportement particulier
+ * v-bind par exemple
+ */
+var directive = new Vue({
+    el: "#directive",
+    directives:{
+        salut
+    },
+    data: {
+        message: 'test directive'
+    },
+    methods: {
+        demo: function (e) {
+            console.log("salut")
+        }
+    }
+})
+

@@ -41,6 +41,7 @@
         {{ seconds }}
     </div>
 
+<!--    watcher et computed-->
     <div class="ui main container" id="watcher">
         <input type="checkbox" v-model="success">
         <input type="text" v-model="message">
@@ -53,6 +54,26 @@
             Nom complet: {{ fullName }}
         </p>
         <input type="text" v-model="fullName">
+    </div>
+
+<!--    directive-->
+    <div class="ui main container" id="directive">
+        <a href="https://grafikart.fr" @click.prevent.stop="demo">Demonstration</a>
+        <br>
+        <label>
+<!--            modifier : lazy, trim, number-->
+            Test modifier sur v-model
+            <input type="text" v-model.lazy="message" @keyup="demo()">
+        </label>
+        <br>
+        <label>
+            Test directive custom
+            <input type="text" v-hello.a.b.c="message">
+        </label>
+        <br>
+        <input type="text" v-model="message">
+        <br>
+        <p>{{ message }}</p>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="js/App.js"></script>
