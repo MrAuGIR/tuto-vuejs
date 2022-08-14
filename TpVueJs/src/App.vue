@@ -11,15 +11,26 @@
 <script>
   import Counter from "./Counter";
   import Alert from "./Alert";
+  import Item from "./item";
 export default {
   components: {
     Counter,
-    Alert
+    Alert,
+    Item
   },
   name: 'app',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      'items': [
+        {
+          'name': 'poire',
+          'category': 'fruit'
+        },
+        {
+          'name': 'pomme',
+          'category': 'fruit'
+        }
+      ]
     }
   }
 }
