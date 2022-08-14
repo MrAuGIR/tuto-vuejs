@@ -23,6 +23,9 @@ export default {
   watch: {
     value (value) {
       this.todos = value
+    },
+    todos (value) {
+      this.$parent.todos = value
     }
   }
 }

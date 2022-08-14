@@ -16,8 +16,8 @@
         <input type="number" v-model="this.item.quantity">
       </div>
     </div>
-    <div class="item-part item-add">
-      <button class="item-add-todo" @click.prevent="removeTodo"><i class="trash icon"></i></button>
+    <div class="item-part item-dell">
+      <button class="item-dell-todo" @click.prevent="removeTodo()"><i class="trash icon"></i></button>
     </div>
   </div>
 </template>
@@ -52,8 +52,8 @@ export default {
       }
     },
     removeTodo () {
-      this.status = 'added'
-      this.$parent.itemsToAdd.push(this.item)
+      this.item.status = 'ready'
+      this.$parent.todos = this.$parent.todos.filter(i => i !== this.item)
     }
   }
 }

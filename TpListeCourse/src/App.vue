@@ -2,7 +2,7 @@
   <div class="container">
     <div id="app">
       <div class="app-left-panel">
-        <search-list :items="this.items"></search-list>
+        <search-list :items="this.items" v-model="todos"></search-list>
       </div>
       <div class="app-center-panel">
         <todo-list v-model="todos"></todo-list>

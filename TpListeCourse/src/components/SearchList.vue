@@ -10,16 +10,11 @@ import SearchItem from './SearchItem'
 export default {
   name: 'SearchList',
   props: {
-    'items': {type: Array, default: []}
-  },
-  data () {
-    return {
-      'itemsToAdd': []
-    }
+    'items': {type: Array, default: []},
+    'value': {type: Array, default: []}
   },
   watch: {
-    itemsToAdd: function (items) {
-      console.log(items)
+    value: function (items) {
       this.$parent.todos = items
     }
   },

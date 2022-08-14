@@ -1,5 +1,5 @@
 <template>
-  <div class="item" v-show="true">
+  <div class="item" :class="addedClass" v-show="true">
     <div class="item-part item-logo">
       <img src="">
     </div>
@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="item-part item-add">
-      <button class="item-add-todo" @click.prevent="addTodo"><i class="play icon"></i></button>
+      <button class="item-add-todo" @click.prevent="addTodo" :disabled="isAdded"><i class="play icon"></i></button>
     </div>
   </div>
 </template>
@@ -53,7 +53,18 @@ export default {
     },
     addTodo () {
       this.item.status = 'added'
-      this.$parent.itemsToAdd.push(this.item)
+      this.$parent.value.push(this.item)
+    }
+  },
+  computed: {
+    addedClass () {
+      if (this.item.status === 'ready') {
+        return {'item-ready': true}
+      }
+      return {'item-added': true}
+    },
+    isAdded () {
+      return this.item.status === 'added'
     }
   }
 }
@@ -74,6 +85,14 @@ export default {
     width: 100%;
     border-radius: 5px;
     border: 1px solid #c9b7b7;
+  }
+
+  .item-ready{
+    color: black;
+  }
+
+  .item.item-added {
+    color: #c0a8a8;
   }
 
   .item-part {
