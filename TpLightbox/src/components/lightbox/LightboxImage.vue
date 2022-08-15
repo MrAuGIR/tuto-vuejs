@@ -1,7 +1,9 @@
 <template>
   <div @click.stop>
-    <div v-if="loading">chargement...</div>
-    <img :src="src" class="lightbox__image" :style="style" alt="une image">
+    <div v-if="loading" class="lightbox__loading"></div>
+    <transition name="lightbox-fade">
+      <img :src="src" class="lightbox__image" :style="style" alt="une image" :key="src">
+    </transition>
   </div>
 </template>
 
@@ -38,8 +40,8 @@ export default {
       this.style = {
         width: width + 'px',
         height: height + 'px',
-        top: ((window.innerHeight - height) + 0.5) + 'px',
-        left: ((window.innerWidth - width) + 0.5) + 'px'
+        top: ((window.innerHeight - height) * 0.5) + 'px',
+        left: ((window.innerWidth - width) * 0.5) + 'px'
       }
     }
   },
@@ -51,9 +53,16 @@ export default {
       this.resizeImage(image)
     }
     image.src = this.image
-    window.addEventListener('resize', () => {
+    this.resizeEvent = () => {
+      console.log('resize')
       this.resizeImage(image)
-    })
+    }
+    window.addEventListener('resize', this.resizeEvent)
+  },
+  destroyed () {
+    // on remove l'event 'redimension de la fenetre' quand on quite la lightbox
+    // pour eviter que cette event s'active quand on redimension la fenetre quand la lightbox n'est pas active
+    window.removeEventListener('resize', this.resizeEvent)
   }
 }
 </script>
